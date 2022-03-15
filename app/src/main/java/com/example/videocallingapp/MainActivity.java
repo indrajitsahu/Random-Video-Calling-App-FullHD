@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -55,59 +57,50 @@ public class MainActivity extends AppCompatActivity {
         });
 
         progressDialog.show();
-//        ProgressBar progressBar = findViewById(R.id.progressBar);
-//        progressBar.setVisibility(View.VISIBLE);
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-//        database.setPersistenceEnabled(true);
+
         FirebaseUser currentUser = auth.getCurrentUser();
 
-        binding.reward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RewardActivity.class));
-            }
-        });
+        database.getReference().child("profiles")
+                .child(currentUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        progressDialog.dismiss();
+                        user = snapshot.getValue(Users.class);
+                        coins = user.getCoins();
 
-        database.getReference().child("profiles").child(currentUser.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        binding.coins.setText("You have: " + coins);
 
-                progressDialog.dismiss();
-//                progressBar.setVisibility(View.GONE);
-                user = snapshot.getValue(Users.class);
-                coins = user.getCoins();
-                binding.coins.setText("You have: " + coins);
-                Glide.with(MainActivity.this).load(user.getProfile()).into(binding.profilePicture);
+                        Glide.with(MainActivity.this)
+                                .load(user.getProfile())
+                                .into(binding.profilePicture);
+                    }
 
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
 
         binding.connectMe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(isPermissionGranted()){
-                    if(coins > 5) {
-
-                        coins-=5;
+            public void onClick(View view) {
+                if(isPermissionsGranted()) {
+                    if (coins > 5) {
+                        coins = coins - 5;
                         database.getReference().child("profiles")
                                 .child(currentUser.getUid())
                                 .child("coins")
                                 .setValue(coins);
-
-                        Toast.makeText(MainActivity.this, "Call finding...", Toast.LENGTH_SHORT).show();
-
-//                        Intent intent = new Intent(MainActivity.this, ConnectingActivity.class);
-//                        intent.putExtra("profile", user.getProfile());
-//                        startActivity(intent);
-
-                        startActivity(new Intent(MainActivity.this, ConnectingActivity.class));
-                    }
-                    else {
-                        Toast.makeText(MainActivity.this, "Insufficient coins", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, ConnectingActivity.class);
+                        intent.putExtra("profile", user.getProfile());
+                        startActivity(intent);
+                        //startActivity(new Intent(MainActivity.this, ConnectingActivity.class));
+                    } else {
+                        Toast.makeText(MainActivity.this, "Insufficient Coins", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     askPermissions();
@@ -115,26 +108,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        binding.signOut.setOnClickListener(new View.OnClickListener() {
+        binding.reward.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                auth.signOut();
-                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-                finishAffinity();
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RewardActivity.class));
             }
         });
+
     }
 
     void askPermissions(){
         ActivityCompat.requestPermissions(this, permissions, requestCode);
     }
 
-    private boolean isPermissionGranted(){
-        for (String permission: permissions) {
+    private boolean isPermissionsGranted() {
+        for(String permission : permissions ){
             if(ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
                 return false;
         }
+
         return true;
     }
 
