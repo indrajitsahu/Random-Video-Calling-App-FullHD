@@ -14,5 +14,5 @@ This app using WebRTC API which uses server signaling and NATs for both devices 
 - Admob Reward Ads Integration
 - Animation from lottiefiles.com
 - Video coins system (per video call costs you 5 coins)
-- Automatic room creation for a new video call in the database where the two peer will connect
+- Automatic room creation for a new video call in the database where the two peers will connect
 - Firebase Authentication Integration
