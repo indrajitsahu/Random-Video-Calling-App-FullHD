@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser user = auth.getCurrentUser();
-                            Users firebaseUser = new Users(user.getUid(), user.getDisplayName(), user.getPhotoUrl().toString(), "Unknown", 500);
+                            Users firebaseUser = new Users(user.getUid(), user.getPhotoUrl().toString(), user.getDisplayName(), "Unknown", 500);
                             database.getReference()
                                     .child("profiles")
                                     .child(user.getUid())

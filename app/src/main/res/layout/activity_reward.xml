@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="100 Coins"
+            android:text="200 Coins"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="150 Coins"
+            android:text="250 Coins"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -211,7 +211,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="200 Coins"
+            android:text="300 Coins"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -250,7 +250,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="250 Coins"
+            android:text="350 Coins"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -289,7 +289,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="300 Coins"
+            android:text="400 Coins"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

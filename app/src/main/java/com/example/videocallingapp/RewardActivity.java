@@ -115,6 +115,89 @@ public class RewardActivity extends AppCompatActivity {
             }
         });
 
+        binding.v3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                coins = coins + 300;
+                database.getReference().child("profiles")
+                        .child(currentUid)
+                        .child("coins")
+                        .setValue(coins);
+                Toast.makeText(RewardActivity.this, "Ads Loading...", Toast.LENGTH_SHORT).show();
+                if (mRewardedAd != null) {
+                    Activity activityContext = RewardActivity.this;
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            loadAd();
+                            coins = coins + 300;
+                            database.getReference().child("profiles")
+                                    .child(currentUid)
+                                    .child("coins")
+                                    .setValue(coins);
+                            binding.v3.setImageResource(R.drawable.check);
+                        }
+                    });
+                } else {
+
+                }
+            }
+        });
+        binding.v4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                coins = coins + 350;
+                database.getReference().child("profiles")
+                        .child(currentUid)
+                        .child("coins")
+                        .setValue(coins);
+                Toast.makeText(RewardActivity.this, "Ads Loading...", Toast.LENGTH_SHORT).show();
+                if (mRewardedAd != null) {
+                    Activity activityContext = RewardActivity.this;
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            loadAd();
+                            coins = coins + 350;
+                            database.getReference().child("profiles")
+                                    .child(currentUid)
+                                    .child("coins")
+                                    .setValue(coins);
+                            binding.v4.setImageResource(R.drawable.check);
+                        }
+                    });
+                } else {
+
+                }
+            }
+        });
+        binding.v5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                coins = coins + 400;
+                database.getReference().child("profiles")
+                        .child(currentUid)
+                        .child("coins")
+                        .setValue(coins);
+                Toast.makeText(RewardActivity.this, "Ads Loading...", Toast.LENGTH_SHORT).show();
+                if (mRewardedAd != null) {
+                    Activity activityContext = RewardActivity.this;
+                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            loadAd();
+                            coins = coins + 400;
+                            database.getReference().child("profiles")
+                                    .child(currentUid)
+                                    .child("coins")
+                                    .setValue(coins);
+                            binding.v5.setImageResource(R.drawable.check);
+                        }
+                    });
+                } else {}
+            }
+        });
+
     }
 
     void loadAd() {
@@ -125,7 +208,6 @@ public class RewardActivity extends AppCompatActivity {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         // Handle the error.
-
                         mRewardedAd = null;
                     }
 
