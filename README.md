@@ -4,8 +4,6 @@ This is a simple video calling app called **Connect**. This enables you to conne
 
 <img src="https://user-images.githubusercontent.com/76425862/157926320-403dfdce-8929-48f4-826d-eb2164a9fc3b.jpg" width="300" height="400" /> 
 
-![img2](https://github.com/indrajitsahu/Random-Video-Calling-App-FullHD/assets/76425862/39756adb-2daa-4038-91da-0cadd0525673)
-
 <img src="https://github.com/indrajitsahu/Random-Video-Calling-App-FullHD/assets/76425862/39756adb-2daa-4038-91da-0cadd0525673" width="300" height="400" /> 
 
 <img src="https://user-images.githubusercontent.com/76425862/157926342-38c616eb-338b-4049-afe5-d9b494d82067.jpg" width="300" height="400" />
